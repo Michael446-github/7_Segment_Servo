@@ -20,8 +20,7 @@ String text = String(TEXT);
 
 void setup()
 {
-	int length = sizeof(servo_pins) / sizeof(servo_pins[0]);
-	for (int i = 0; i < length; ++i)
+	for (uint8_t i = 0; i < 7; ++i)
 	{
 		motors[i].attach(servo_pins[i]);
 	}
@@ -33,7 +32,7 @@ void setup()
 
 void loop()
 {
-	for (int i = 0; i < text.length(); ++i)
+	for (uint8_t i = 0; i < text.length(); ++i)
 	{
 		update(text[i]);
 		delay(INTERVAL);
@@ -64,7 +63,7 @@ int bin_search(char arr[], int low, int high, char val) {
 
 void update(char val) {
 	uint8_t index = bin_search(hash_keys, 0, n - 1, val);
-	for (int i = 0; i < 7; i++) {
+	for (uint8_t i = 0; i < 7; i++) {
 		byte state = bitRead(hash_values[index], i);
 		if (state == 0)
 			state = SERVO_DOWN;
