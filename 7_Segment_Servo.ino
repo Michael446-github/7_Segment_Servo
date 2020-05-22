@@ -38,7 +38,7 @@ void loop()
 		delay(INTERVAL);
 
 		// If there are repeating chars
-		// update(0);
+		// update('0');
 		// delay(300);
 	}
 
