@@ -1,9 +1,9 @@
-#define INTERVAL 1000 // Delay before showing next symbol
+#define INTERVAL 1000  // Delay before showing next symbol
 
-#define SERVO_DOWN 0
-#define SERVO_UP 90
+#define SERVO_DOWN 0  // minimal 
+#define SERVO_UP 90  // and maximal positions of servo motor
 
-#define TEXT "Muhammadrasuls Github is great!" // Any kinda text
+#define TEXT "Muhammadrasuls Github is great!"  // Any kinda text
 
 uint8_t servo_pins[] = {2, 3, 4, 5, 6, 7, 8};
 
@@ -21,14 +21,18 @@ String text = String(TEXT);
 
 void setup()
 {
+	
 	for (uint8_t i = 0; i < 7; ++i)
 	{
 		motors[i].attach(servo_pins[i]);
 	}
+	
+	
 	text.trim();
 	text.toLowerCase();
+	
 	update('0');
-	delay(500);
+	delay(2000
 }
 
 void loop()
@@ -43,12 +47,12 @@ void loop()
 		// delay(300);
 	}
 
-	// If you want to use BT ot Serial port, then uncomment this, and comment the above code:
+	// If you want to use BT or Serial port, then uncomment this, and comment the above code:
 	//serial();
 }
 
 
-int bin_search(char arr[], int low, int high, char val) {
+int bin_search(char arr[], int low, int high, char val) {  // binary search implementation
 
 	if (low <= high) {
 		int mid = (low + high) / 2;
@@ -63,14 +67,17 @@ int bin_search(char arr[], int low, int high, char val) {
 }
 
 void update(char val) {
-	uint8_t index = bin_search(hash_keys, 0, n - 1, val);
+	uint8_t index = bin_search(hash_keys, 0, n - 1, val); // search for the value
 	for (uint8_t i = 0; i < 7; i++) {
-		byte state = bitRead(hash_values[index], i);
+		
+		byte state = bitRead(hash_values[index], i); // read i'th bit in a number
+		
 		if (state == 0)
 			state = SERVO_DOWN;
 		else
 			state = SERVO_UP;
-		motors[i].write(state);
+		
+		motors[i].write(state);  // turn servo up or down appropriately
 	}
 }
 
