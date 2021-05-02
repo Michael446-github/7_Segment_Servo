@@ -1,0 +1,2 @@
+language = "cpp"
+run = "g++ 7_Segment_Servo.cpp -o main"
